@@ -1,0 +1,30 @@
+name: Manual Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'env'
+        required: true
+        type: choice
+        options:
+        - dev
+        - stg
+        - prd
+      branch_name:
+        description: 'branch name to build app'
+        type: string
+        required: true
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo inputs
+        run: |
+          echo "Env: ${{ inputs.env }}"
+          echo "Branch Name: ${{ inputs.branch_name }}"
+      - name: Echo ref
+        run: |
+          echo "Hash: ${{ github.sha }}"
+          echo "Branch Name: ${{ github.ref_name }}"
