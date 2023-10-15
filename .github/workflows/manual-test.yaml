@@ -31,8 +31,8 @@ jobs:
         run: |
           commit_hash="$(echo ${{ github.sha }} | cut -c 1-7)"
           docker_image_tag="${{ inputs.image_tag_name }}-${commit_hash}"
-          echo "docker_image_tag: $docker_image_name"
-          echo "docker_image_tag=$docker_image_name" >> "$GITHUB_OUTPUT"
+          echo "docker_image_tag: $docker_image_tag"
+          echo "docker_image_tag=$docker_image_tag" >> "$GITHUB_OUTPUT"
       - name: Build docker image and run
         run: |
           docker build . -t ${{ steps.setup-image-tag.outputs.docker_image_tag }}
