@@ -11,8 +11,8 @@ on:
         - dev
         - stg
         - prd
-      branch_name:
-        description: 'branch name to build app'
+      image_tag_name:
+        description: 'docker image tag'
         type: string
         required: true
 
@@ -23,8 +23,17 @@ jobs:
       - name: Echo inputs
         run: |
           echo "Env: ${{ inputs.env }}"
-          echo "Branch Name: ${{ inputs.branch_name }}"
-      - name: Echo ref
+          echo "Image Tag Name: ${{ inputs.image_tag_name }}"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup docker image tag
+        id: setup-image-tag
         run: |
-          echo "Hash: ${{ github.sha }}"
-          echo "Branch Name: ${{ github.ref_name }}"
+          commit_hash="$(echo ${{ github.sha }} | cut -c 1-7)"
+          docker_image_tag="${{ inputs.image_tag_name }}-${commit_hash}"
+          echo "docker_image_tag: $docker_image_name"
+          echo "docker_image_tag=$docker_image_name" >> "$GITHUB_OUTPUT"
+      - name: Build docker image and run
+        run: |
+          docker build . -t ${{ steps.setup-image-tag.outputs.docker_image_tag }}
+          docker run --rm -t ${{ steps.setup-image-tag.outputs.docker_image_tag }}
