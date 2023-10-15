@@ -1,4 +1,4 @@
-name: Manual Test
+name: Manual Trigger
 
 on:
   workflow_dispatch:
@@ -17,13 +17,14 @@ on:
         required: true
 
 jobs:
-  echo:
+  build-test:
     runs-on: ubuntu-latest
     steps:
       - name: Echo inputs
         run: |
-          echo "Env: ${{ inputs.env }}"
-          echo "Image Tag Name: ${{ inputs.image_tag_name }}"
+          echo "branch name: ${{ github.ref_name }}"
+          echo "env: ${{ inputs.env }}"
+          echo "image tag name: ${{ inputs.image_tag_name }}"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup docker image tag
