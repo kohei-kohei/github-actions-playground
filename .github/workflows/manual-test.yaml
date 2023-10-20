@@ -19,12 +19,12 @@ on:
 jobs:
   build-test:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
     steps:
       - name: Echo inputs
         run: |
-          echo "branch name: ${{ github.ref_name }}"
-          echo "env: ${{ inputs.env }}"
-          echo "image tag name: ${{ inputs.image_tag_name }}"
+          echo "dummy secret key: ${{ secrets.DUMMY_SECRET_KEY }}"
+          echo "env name: ${{ vars.NAME }}"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup docker image tag
