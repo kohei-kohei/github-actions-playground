@@ -25,8 +25,14 @@ jobs:
         run: |
           echo "dummy secret key: ${{ secrets.DUMMY_SECRET_KEY }}"
           echo "env name: ${{ vars.NAME }}"
+      - name: Echo github variables
+        run: |
+          echo "github.event.number: ${{ github.event.number }}"
+          echo "github.event.inputs.pr_number: ${{ github.event.inputs.pr_number }}"
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{ github.event.inputs.pr_number }}/merge
       - name: Setup docker image tag
         id: setup-image-tag
         run: |
