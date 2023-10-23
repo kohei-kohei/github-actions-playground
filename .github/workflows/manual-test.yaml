@@ -28,7 +28,7 @@ jobs:
       - name: Echo github variables
         run: |
           echo "github.ref: ${{ github.ref }}"
-          echo ${{GITHUB_REF#refs/pull/}}
+          echo $GITHUB_REF
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup docker image tag
