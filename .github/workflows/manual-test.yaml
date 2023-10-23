@@ -27,12 +27,10 @@ jobs:
           echo "env name: ${{ vars.NAME }}"
       - name: Echo github variables
         run: |
-          echo "github.event.number: ${{ github.event.number }}"
-          echo "github.event.inputs.pr_number: ${{ github.event.inputs.pr_number }}"
+          echo "github.ref: ${{ github.ref }}"
+          echo ${{GITHUB_REF#refs/pull/}}
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: refs/pull/${{ github.event.inputs.pr_number }}/merge
       - name: Setup docker image tag
         id: setup-image-tag
         run: |
