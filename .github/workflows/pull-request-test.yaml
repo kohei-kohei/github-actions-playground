@@ -1,0 +1,21 @@
+name: Pull Request Trigger
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+
+jobs:
+  checkout-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: |
+          echo $GITHUB_SHA
+          echo $GITHUB_REF
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Echo again
+        run: |
+          echo $GITHUB_SHA
+          echo $GITHUB_REF
