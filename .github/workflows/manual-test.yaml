@@ -37,7 +37,7 @@ jobs:
       - name: Git merge
         run: |
           git merge $GITHUB_SHA
-          git show --format='%H' --no-patch
+          git log -1 --format='%H'
       - name: Setup docker image tag
         id: setup-image-tag
         run: |
