@@ -27,10 +27,20 @@ jobs:
           echo "env name: ${{ vars.NAME }}"
       - name: Echo github variables
         run: |
-          echo "github.ref: ${{ github.ref }}"
+          echo $GITHUB_SHA
           echo $GITHUB_REF
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Echo again
+        run: |
+          echo $GITHUB_SHA
+          echo $GITHUB_REF
+      - name: Git merge
+        run: |
+          git merge $GITHUB_REF
+          git show --format='%H' --no-patch
       - name: Setup docker image tag
         id: setup-image-tag
         run: |
