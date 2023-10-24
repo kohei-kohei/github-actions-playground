@@ -33,10 +33,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-      - name: Echo again
-        run: |
-          echo $GITHUB_SHA
-          echo $GITHUB_REF
+          fetch-depth: 0
       - name: Git merge
         run: |
           git merge $GITHUB_REF

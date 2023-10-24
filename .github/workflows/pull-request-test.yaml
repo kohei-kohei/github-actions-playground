@@ -15,7 +15,3 @@ jobs:
           echo $GITHUB_REF
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Echo again
-        run: |
-          echo $GITHUB_SHA
-          echo $GITHUB_REF
