@@ -25,6 +25,8 @@ jobs:
           - dev
           - stg
           - prd
+    environment:
+      name: ${{ matrix.env }}
     uses: ./.github/workflows/echo-secret.yaml
     secrets:
       RECEIVED_KEY: ${{ secrets.DUMMY_SECRET_KEY }}
