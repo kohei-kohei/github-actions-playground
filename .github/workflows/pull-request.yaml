@@ -1,0 +1,19 @@
+name: Pull Request Trigger
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  echo:
+    strategy:
+      matrix:
+        env:
+          - dev
+          - stg
+          - prd
+    uses: ./.github/workflows/echo-enviroments.yaml
+    secrets: inherit
+    with:
+      env: ${{ matrix.env }}

@@ -17,14 +17,15 @@ on:
         required: true
 
 jobs:
+  echo:
+    uses: ./.github/workflows/echo-enviroments.yaml
+    secrets: inherit
+    with:
+      env: ${{ inputs.env }}
+
   build-test:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.env }}
     steps:
-      - name: Echo inputs
-        run: |
-          echo "dummy secret key: ${{ secrets.DUMMY_SECRET_KEY }}"
-          echo "env name: ${{ vars.NAME }}"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup docker image tag
