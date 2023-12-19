@@ -17,3 +17,19 @@ jobs:
     secrets: inherit
     with:
       env: ${{ matrix.env }}
+
+  echo-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env:
+          - dev
+          - stg
+          - prd
+    environment: ${{ matrix.env }}
+    steps:
+      - name: echo
+        run: |
+          echo "matrix.env: ${{ matrix.env }}"
+          echo "env name: ${{ vars.NAME }}"
+          echo "dummy secret key: ${{ secrets.DUMMY_SECRET_KEY }}"
