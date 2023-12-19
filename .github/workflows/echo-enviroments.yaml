@@ -15,5 +15,6 @@ jobs:
     steps:
       - name: Echo inputs
         run: |
-          echo "dummy secret key: ${{ secrets.DUMMY_SECRET_KEY }}"
+          echo "inputs.env: ${{ inputs.env }}"
           echo "env name: ${{ vars.NAME }}"
+          echo "dummy secret key: ${{ secrets.DUMMY_SECRET_KEY }}"

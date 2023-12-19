@@ -19,6 +19,7 @@ on:
 jobs:
   echo:
     uses: ./.github/workflows/echo-enviroments.yaml
+    secrets: inherit
     with:
       env: ${{ inputs.env }}
 
