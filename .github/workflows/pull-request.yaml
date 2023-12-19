@@ -27,4 +27,4 @@ jobs:
           - prd
     uses: ./.github/workflows/echo-secret.yaml
     secrets:
-      key: ${{ secrets.DUMMY_SECRET_KEY }}
+      RECEIVED_KEY: ${{ secrets.DUMMY_SECRET_KEY }}
