@@ -1,0 +1,19 @@
+name: Echo Environments
+
+on:
+  workflow_call:
+    inputs:
+      env:
+        type: string
+        description: '環境名'
+        required: true
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
+    steps:
+      - name: Echo inputs
+        run: |
+          echo "dummy secret key: ${{ secrets.DUMMY_SECRET_KEY }}"
+          echo "env name: ${{ vars.NAME }}"
