@@ -17,3 +17,9 @@ jobs:
     secrets: inherit
     with:
       env: ${{ matrix.env }}
+
+  confirm-secrets:
+    uses: ./.github/workflows/confirm-secrets.yaml
+    secrets: inherit
+    with:
+      secret-name: DUMMY_SECRET_KEY
