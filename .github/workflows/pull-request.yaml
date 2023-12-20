@@ -18,8 +18,8 @@ jobs:
     with:
       env: ${{ matrix.env }}
 
-  echo-test:
-    uses: ./.github/workflows/echo-secret.yaml
+  confirm-secrets:
+    uses: ./.github/workflows/confirm-secrets.yaml
     secrets: inherit
     with:
       secret-name: DUMMY_SECRET_KEY
