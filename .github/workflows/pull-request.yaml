@@ -20,5 +20,6 @@ jobs:
 
   echo-test:
     uses: ./.github/workflows/echo-secret.yaml
+    secrets: inherit
     with:
       secret-name: DUMMY_SECRET_KEY
