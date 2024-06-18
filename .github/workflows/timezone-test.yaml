@@ -1,0 +1,23 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+      - name: Run main.go
+        run: go run main.go
+      - name: Run main.go
+        env:
+          TZ: "Asia/Tokyo"
+        run: go run main.go
+      - name: Run main.go
+        env:
+          TZ: "America/Los_Angeles"
+        run: go run main.go
